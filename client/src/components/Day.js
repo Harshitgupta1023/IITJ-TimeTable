@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import EventModal from "./EventModal";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -20,24 +21,30 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Day = ({ day, rowIdx,userData }) => {
-  
+const Day = ({ day, rowIdx, userData }) => {
   let dateArr = [];
-  if (userData !==undefined){
-  userData.map((dat)=>{
-    dateArr.push(dat["Date"]);
-  })}
-  console.log(dateArr);
+  if (userData !== undefined) {
+    userData.map((dat) => {
+      dateArr.push(dat["Date"]);
+    });
+  }
   const classes = useStyles();
+  const [showModal, setShowModal] = useState(false);
+  const displayModal = () => {
+    setShowModal(!showModal);
+  };
+
   const getCurrentDayClass = () => {
-    console.log(dateArr.includes(day.format("DD-MM-YYYY")),day.format("DD-MM-YYYY"))
     return dateArr.includes(day.format("DD-MM-YYYY"))
       ? classes.selectedDay
       : classes.daysNumber;
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={displayModal}>
+      {showModal ? (
+        <EventModal displayModal={displayModal} userData={userData} day={day} />
+      ) : null}
       <header className={classes.header}>
         {rowIdx === 0 && <p>{day.format("ddd").toUpperCase()}</p>}
         <p className={getCurrentDayClass()}>{day.format("DD")}</p>

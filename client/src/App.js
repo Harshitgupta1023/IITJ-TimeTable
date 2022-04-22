@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CalendarHeader from "./components/CalendarHeader";
 import Sidebar from "./components/Sidebar";
 import Month from "./components/Month";
+import EventModal from "./components/EventModal";
+
 import { auth, db } from "./config";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -17,9 +19,10 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const classes = useStyles();
+
   const [user, setUser] = useState();
   const [userData, setUserData] = useState();
-  const classes = useStyles();
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -36,18 +39,19 @@ const App = () => {
       }
     });
   }, []);
+
   // if (user === null) {
-    return (
-      <React.Fragment>
-        <div className={classes.root}>
-          <CalendarHeader />
-          <div style={{ display: "flex", flexGrow: "1" }}>
-            <Sidebar />
-            <Month month={currentMonth} userData={userData} />
-          </div>
+  return (
+    <React.Fragment>
+      <div className={classes.root}>
+        <CalendarHeader />
+        <div style={{ display: "flex", flexGrow: "1" }}>
+          <Sidebar />
+          <Month month={currentMonth} userData={userData} />
         </div>
-      </React.Fragment>
-    );
+      </div>
+    </React.Fragment>
+  );
   // }
 
   return <h1>Login First</h1>;

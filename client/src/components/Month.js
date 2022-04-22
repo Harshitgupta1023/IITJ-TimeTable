@@ -1,7 +1,7 @@
 import React from "react";
 import Day from "./Day";
 
-const Month = ({ month ,userData}) => {
+const Month = ({ month, userData }) => {
   return (
     <div
       style={{
@@ -35,7 +35,7 @@ const Month = ({ month ,userData}) => {
                 }}
                 key={idx}
               >
-                <Day day={day}  rowIdx={i} userData={userData}/>
+                <Day day={day} rowIdx={i} userData={userData} />
               </td>
             ))}
           </tr>
