@@ -45,31 +45,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const EventModal = () =>
+const EventModal = ({ userData, day }) =>
   // obj
   {
     const classes = useStyles();
-    const obj = {
-      "Course Code": "CSL3050",
-      "Course Title": "Database Systems",
-      Date: "22-11-2021",
-      "Google Meet Link for Examionation":
-        "https://meet.google.com/adk-dreq-dsw",
-      "Meet Name": "CSL3050_22Nov2021_Shift 1",
-      Mobile: "7678157802.0",
-      "Mobile Instructor": "nan",
-      "Name of the instructor": "Romi Banerjee",
-      "Proctor Mobile": "6397189144.0",
-      "Proctor Name": "Soniya Singh",
-      "Proctor eMail": "Singh.64@iitj.ac.in",
-      "Roll No": "B19CSE108",
-      Shift: "Shift I",
-      Slot: "A",
-      "Student Name": "Harshit Gupta",
-      Time: "10:00 AM - 12:00 PM",
-      "eMail Instructor": "romibanerjee@iitj.ac.in",
-      "eMail Student": "gupta.44@iitj.ac.in",
-    };
+    let obj = {};
+    userData.map((dat) => {
+      if (dat["Date"] == day.format("DD-MM-YYYY")) {
+        obj = dat;
+      }
+    });
 
     return (
       <div className={classes.modal}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import logo from "../assets/logo.png";
-import CreateEventButton from "./CreateEventButton";
+import GoogleButton from "./GoogleButton";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -73,7 +73,7 @@ const CalendarHeader = () => {
           chevron_right
         </span>
       </button>
-      <CreateEventButton />
+      <GoogleButton/>
     </header>
   );
 };

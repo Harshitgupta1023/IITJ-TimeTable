@@ -1,18 +1,14 @@
 import { getMonth } from "./util";
-import "./App.css";
-import React, { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CalendarHeader from "./components/CalendarHeader";
 import Sidebar from "./components/Sidebar";
 import Month from "./components/Month";
 import EventModal from "./components/EventModal";
 
+import { auth, db } from "./config";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 const useStyles = makeStyles(() => ({
   root: {
     height: "100vh",
@@ -23,21 +19,42 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
-  const [showModal, setShowModal] = useState(false);
   const classes = useStyles();
 
+  const [user, setUser] = useState();
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      if (user) {
+        try {
+          var id = user.email.split("@")[0];
+          const dat = doc(db, "Emails", id);
+          const docSnap = await getDoc(dat);
+          setUserData(docSnap.data()["details"]);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  }, []);
+
+  // if (user === null) {
   return (
     <React.Fragment>
-      {showModal ? <EventModal /> : null}
       <div className={classes.root}>
         <CalendarHeader />
         <div style={{ display: "flex", flexGrow: "1" }}>
           <Sidebar />
-          <Month month={currentMonth} />
+          <Month month={currentMonth} userData={userData} />
         </div>
       </div>
     </React.Fragment>
   );
+  // }
+
+  return <h1>Login First</h1>;
 };
 
 export default App;

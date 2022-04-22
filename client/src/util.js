@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
-export function getMonth(month = dayjs().month()) {
-  const year = dayjs().year();
+export function getMonth(month = 10) {
+  const year = 2021;
   const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day();
   let currentMonthCount = 0 - firstDayOfTheMonth;
   const daysMatrix = new Array(5).fill([]).map(() => {
