@@ -1,47 +1,57 @@
 import React from "react";
-import { makeStyles, Typography } from "@material-ui/core";
+import { Divider, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
-  modal: {
+  container: {
     height: "100vh",
-    width: "220vh",
+    width: "100vw",
+    position: "absolute",
     top: "0",
     left: "0",
-    position: "fixed",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.2)",
+  
   },
-  form: {
-    backgroundColor: "gray",
-    width: "50vh",
-    borderRadius: "20px",
-    paddingLeft: "10px",
-    boxShadow: "2px 2px ",
-  },
-  header: {
-    display: "flex",
-    paddingLeft: "2px",
-    paddingTop: "2px",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "10px",
-  },
-  close: {
-    marginTop: "8px",
-    marginLeft: "150px",
+  subContainer: {
+    height:"75vh",
     backgroundColor: "white",
-    borderRadius: "15px",
-    marginRight: "5px",
+    borderRadius: "10px",
+    padding: "10px",
+    overflow:"auto",
   },
-  details: {
-    marginTop: "8px",
-    fontWeight: "600",
-    fontSize: "1.5rem",
+  titleContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  subtitle: {
+    fontWeight: "200",
+    fontSize: "2rem",
+    fontFamily: "cursive",
+  },
+  closeButton: {
+    backgroundColor: "white",
+    borderWidth: 0,
+  },
+  dataContainer: {
+    marginTop:"20px"
+  },
+  dataItems: {
+    display:"flex",
+    flexDirection: "row",
+    padding:"5px"
+  },
+  dataT:{
+    width:"50%",
+    textAlign:"left",
+    paddingLeft:"15px"
   },
   data: {
-    color: "lightgreen",
-    marginBottom: "2px",
+    width:"50%",
+    textAlign:"left",
+    paddingLeft:"15px"
   },
 }));
 
@@ -57,22 +67,29 @@ const EventModal = ({ userData, day }) =>
     });
 
     return (
-      <div className={classes.modal}>
-        <form className={classes.form}>
-          <header className={classes.header}>
-            <Typography className={classes.details}>Details</Typography>
-            <button className={classes.close}>
+      <div className={classes.container} >
+        <div className={classes.subContainer}>
+          <div className={classes.titleContainer}>
+            <Typography className={classes.subtitle}>Details</Typography>
+            <button className={classes.closeButton}>
               <span className="material-icons">close</span>
             </button>
-          </header>
-          {Object.keys(obj).map((key, idx) => {
-            return (
-              <Typography className={classes.data}>
-                {key} : {obj[key]}
-              </Typography>
-            );
-          })}
-        </form>
+          </div>
+          <hr />
+          <div className={classes.dataContainer}>
+            {Object.keys(obj).map((key, idx) => {
+              return (
+                <div>
+                <div className={classes.dataItems}>
+                  <Typography className={classes.dataT}>{key}</Typography>
+                  <Typography className={classes.data}>{obj[key]}</Typography>
+                </div>
+                <Divider/>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     );
   };

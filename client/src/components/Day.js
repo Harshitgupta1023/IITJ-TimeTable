@@ -41,7 +41,10 @@ const Day = ({ day, rowIdx, userData }) => {
   };
 
   return (
-    <div className={classes.root} onClick={displayModal}>
+    <div
+      className={classes.root}
+      onClick={dateArr.includes(day.format("DD-MM-YYYY")) ? displayModal : null}
+    >
       {showModal ? (
         <EventModal displayModal={displayModal} userData={userData} day={day} />
       ) : null}
