@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CalendarHeader from "./components/CalendarHeader";
 import Sidebar from "./components/Sidebar";
 import Month from "./components/Month";
+import EventModal from "./components/EventModal";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,11 +23,12 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
-
+  const [showModal, setShowModal] = useState(false);
   const classes = useStyles();
 
   return (
     <React.Fragment>
+      {showModal ? <EventModal /> : null}
       <div className={classes.root}>
         <CalendarHeader />
         <div style={{ display: "flex", flexGrow: "1" }}>
