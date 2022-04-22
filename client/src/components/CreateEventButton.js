@@ -4,15 +4,19 @@ import plusImg from "../assets/plus.svg";
 
 const useStyles = makeStyles(() => ({
   eventButton: {
+    width: "100px",
+    height: "40px",
     border: "1px solid gray",
+    marginRight: "20px",
+    marginTop: "10px",
     display: "flex",
-    padding: "10px",
-    borderRadius: "25px",
+    borderRadius: "20px",
     backgroundColor: "white",
+    justifyContent: "center",
     alignItems: "center",
-    boxShadow: "2px 2px lightblue",
+    boxShadow: "1px 1px lightblue",
     "&:hover": {
-      boxShadow: "5px 5px lightblue",
+      boxShadow: "3px 3px lightblue",
     },
   },
   plusImage: {
@@ -20,18 +24,21 @@ const useStyles = makeStyles(() => ({
     height: "20px",
   },
   text: {
-    paddingLeft: "7px",
-    paddingRight: "13px",
+    fontFamily: "cursive",
+    fontWeight: "200",
+    fontSize: "1rem",
   },
 }));
 
-const CreateEventButton = () => {
+const CreateEventButton = ({ name, action, flag }) => {
   const classes = useStyles();
 
   return (
-    <button className={classes.eventButton}>
-      <img src={plusImg} alt="create_event" className={classes.plusImage} />
-      <span className={classes.text}>Create</span>
+    <button className={classes.eventButton} onClick={action}>
+      {flag ? (
+        <img src={plusImg} alt="create_event" className={classes.plusImage} />
+      ) : null}
+      <span className={classes.text}>{name}</span>
     </button>
   );
 };

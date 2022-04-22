@@ -13,7 +13,7 @@ const Sidebar = () => {
         marginLeft: "2%",
       }}
     >
-      <CreateEventButton />
+      <CreateEventButton name={"Create"} flag={true} />
       <SmallCalendar />
     </aside>
   );

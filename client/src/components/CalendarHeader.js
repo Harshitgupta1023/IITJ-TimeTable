@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import logo from "../assets/logo.png";
 import GoogleButton from "./GoogleButton";
+import CreateEventButton from "./CreateEventButton";
 
 const useStyles = makeStyles(() => ({
   header: {
@@ -46,7 +47,8 @@ const CalendarHeader = () => {
     <header className={classes.header}>
       <img src={logo} alt="calendar" className={classes.logo} />
       <h1 className={classes.heading}>Calendar</h1>
-      <button className={classes.todayButton}>Today</button>
+      <CreateEventButton name={"Today"} flag={false} />
+      {/* <button className={classes.todayButton}>Today</button> */}
       <button className={classes.buttons}>
         <span
           className="material-icons success"
@@ -73,7 +75,7 @@ const CalendarHeader = () => {
           chevron_right
         </span>
       </button>
-      <GoogleButton/>
+      <GoogleButton />
     </header>
   );
 };
