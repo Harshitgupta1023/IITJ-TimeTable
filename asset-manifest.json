@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/IITJ-TimeTable/static/css/main.e6c13ad2.css",
+    "main.js": "/IITJ-TimeTable/static/js/main.780ee2f7.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/IITJ-TimeTable/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/IITJ-TimeTable/index.html",
+    "static/media/plus.svg": "/IITJ-TimeTable/static/media/plus.8f3ab9f72337618f2823670542a3a8e4.svg",
+    "main.e6c13ad2.css.map": "/IITJ-TimeTable/static/css/main.e6c13ad2.css.map",
+    "main.780ee2f7.js.map": "/IITJ-TimeTable/static/js/main.780ee2f7.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/IITJ-TimeTable/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.780ee2f7.js"
+  ]
+}
