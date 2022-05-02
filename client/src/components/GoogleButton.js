@@ -5,7 +5,8 @@ import CreateEventButton from "./CreateEventButton";
 
 const GoogleButton = () => {
   return (
-    <div style={{ display: "flex", marginLeft: "auto", marginRight: "10px" }}>
+    <div>
+
       <CreateEventButton name={"SignIn"} action={SignIn} flag={false} />
       <CreateEventButton name={"SignOut"} action={SignOutN} flag={false} />
     </div>

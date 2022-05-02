@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import EventModal from "./EventModal";
 
@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
   },
 
   daysNumber: {},
-  selectedDay: {
+  selectedDayCourse: {
     backgroundColor: "#00CED1",
     color: "white",
     borderRadius: "50%",
@@ -19,14 +19,41 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
     margin: "0.5rem 3rem",
   },
+  selectedDayDuty: {
+    backgroundColor: "red",
+    color: "white",
+    borderRadius: "50%",
+    height: "30px",
+    width: "40px",
+    paddingTop: "0.5rem",
+    textAlign: "center",
+    margin: "0.5rem 3rem",
+  },
+  selectedDayBoth:{
+    backgroundColor: "red",
+    color: "white",
+    borderRadius: "50%",
+    height: "30px",
+    width: "40px",
+    paddingTop: "0.5rem",
+    textAlign: "center",
+    margin: "0.5rem 3rem",
+
+  }
+
 }));
 
 const Day = ({ day, rowIdx, userData }) => {
-  let dateArr = [];
+  let coursedateArr = [];
+  let dutydateArr = []
   if (userData !== undefined) {
-    userData.map((dat) => {
-      dateArr.push(dat["Date"]);
+    userData["courses"].map((dat) => {
+      coursedateArr.push(dat["Date"]);      
     });
+    // userData["duties"].map((dat) => {
+    //   dutydateArr.push(dat["Date"]);
+    // });
+
   }
   const classes = useStyles();
   const [showModal, setShowModal] = useState(false);
@@ -35,18 +62,23 @@ const Day = ({ day, rowIdx, userData }) => {
   };
 
   const getCurrentDayClass = () => {
-    return dateArr.includes(day.format("DD-MM-YYYY"))
-      ? classes.selectedDay
-      : classes.daysNumber;
+    if (coursedateArr.includes(day.format("DD-MM-YYYY"))){
+      return classes.selectedDayCourse
+    }
+    else if(dutydateArr.includes(day.format("DD-MM-YYYY"))){
+      return classes.selectedDayDuty
+    }
+    else{
+      return  classes.daysNumber;}
   };
 
   return (
     <div
       className={classes.root}
-      onClick={dateArr.includes(day.format("DD-MM-YYYY")) ? displayModal : null}
+      onClick={coursedateArr.includes(day.format("DD-MM-YYYY")) || dutydateArr.includes(day.format("DD-MM-YYYY")) ? displayModal : null}
     >
       {showModal ? (
-        <EventModal displayModal={displayModal} userData={userData} day={day} />
+        <EventModal displayModal={displayModal} userData={userData["courses"]} day={day} />
       ) : null}
       <header className={classes.header}>
         {rowIdx === 0 && <p>{day.format("ddd").toUpperCase()}</p>}

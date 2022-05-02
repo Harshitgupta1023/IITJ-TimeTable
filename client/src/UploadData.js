@@ -8,7 +8,7 @@ const UploadData = () => {
   // Function for emails update
   const EmailUpload = () => {
     Object.keys(EmailData).map(async (da) => {
-      await setDoc(doc(db, "Emails", da), { details: EmailData[da] });
+      await setDoc(doc(db, "Emails", da),  EmailData[da] );
     });
   };
   // Function for Courses update
@@ -17,7 +17,8 @@ const UploadData = () => {
       await setDoc(doc(db, "Courses", da), { details: CourseData[da] });
     });
   };
-  
+  EmailUpload()
+  // CourseUpload()
   return (
     <div>
       <h1> Uploading Data .... </h1>

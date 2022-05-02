@@ -27,6 +27,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-around",
   },
   subtitle: {
+    width:"85%",
     fontWeight: "200",
     fontSize: "2rem",
     fontFamily: "cursive",
@@ -56,12 +57,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const EventModal = ({ userData, day }) =>
-  // obj
   {
     const classes = useStyles();
     let obj = {};
     userData.map((dat) => {
-      if (dat["Date"] == day.format("DD-MM-YYYY")) {
+      if (dat["Date"] === day.format("DD-MM-YYYY")) {
         obj = dat;
       }
     });
